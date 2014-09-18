@@ -34,11 +34,14 @@ var busOpts = prompt(" - What bus would you like " + char[0] + ", " + char[1] + 
 
  
 if(busOpts === '1'){
+	busOpts = "the Lansing Mall"
 	console.log("Sweet, they are going to the Lansing Mall!");
 } else if (busOpts === '2'){
+	busOpts = "the Meridian Mall"
 	console.log("Cool, they will go to the Meridian Mall");
 } else if (busOpts === '3') {
+	busOpts = "WalMart"
 	console.log("Awesome, these three are going to WalMart!");
 };
 
-
+console.log("After going to " + busOpts + " " + char[0] + ", " + char[1] + ", and " + char[2] + " decided to stop for a drink.") 

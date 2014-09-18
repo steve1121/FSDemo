@@ -1,23 +1,20 @@
 // Project 3
 // Author: Steven Beeson
 // I hope I get it right this time.
+// I could not figure out the correct way to bring in json data to do an age verification check.
 
-var handleData = function (json) {
-	for (var i = 0; i < json.characters.length; i++){
-		var character = json.characters[i];
-	};
-};
-
-handleData(json2);
 
 var title = "3 Guys in a Story";
 var char = ["John", "Jake", "Smitty"];
 var setting = "Downtown Lansing";
+var characters = json2.characters
+var charactersName = json2.characters.name
+var charactersAge = json2.characters.age
 
 console.log("Hello, welcome to " + title + ".");
 console.log("This story pertains to the adventures of " + char[0] + ", " + char[1] + ", and " + char[2] + ".");
 console.log(char[0] + ", " + char[1] + ", and " + char[2] + "'s info are as follows..");
-console.log(json);
+console.log(json2);
 var advPrompt = prompt("Shall we throw " + char[0] + ", " + char[1] + ", and " + char[2] + " into an adventure?");
 if(advPrompt === "yes"){
 	alert("Let's do it!!")
@@ -45,3 +42,23 @@ if(busOpts === '1'){
 };
 
 console.log("After going to " + busOpts + " " + char[0] + ", " + char[1] + ", and " + char[2] + " decided to stop for a drink.") 
+
+for (charactersAge >= 21; characters.length; characters++) {
+  if (charactersAge >= 21) {
+    console.log(charactersName + " is old enough to drink.");
+  }else{
+	console.log(charactersName + " is not old enough to drink.")  
+	}
+}
+
+console.log(char[0] + ", " + char[1] + ", and " + char[2] + " decided to call it a night and went home.")
+/*var ageCheck = function checkingAge(characters) {
+	if (characters >= 21) {
+console.log(characters + " is of age");
+} else {
+console.log(characters + " isn't of age");
+}
+
+}
+
+ageCheck(json2.characters[0].age);*/

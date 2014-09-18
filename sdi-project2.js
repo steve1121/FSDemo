@@ -3,42 +3,91 @@
 //Author: Steven Beeson
 
 
-var  k = "Knight Gildar";
+
 var p = "Princess Pop";
-var d = "Evil Dragon";
 
-console.log("There once was a good dragon named " + d + ".");
-console.log("His greatest enemy was the dreaded " + k + "!");
-console.log(k + " was always beating poor " + d + " up and stealing his poor " + p + "!");
-console.log(p + " was " + d + "'s best friend and " + k +" always kidnapped her and made her feed him every night.")
-console.log("Whereas " + d + " was always letting her do as she pleased as long as he could admire " + p + ".")
-console.log("After so long " + d + " decided enough was enough, he was fighting back!");
-console.log("He needed to prepare, big time.");
+	
 
-var sc = prompt ("What weapon should " + d + " weild?")
-var scStrength = prompt ("What strength should the " + sc + " possess?")
-var dDef = prompt ("How much defense should " + d + " possess?")
-var ls = prompt ("What weapon should " + k + " weild?")
-var lStrength = prompt ("What strength should the " + ls + " possess?")
-var kDef = prompt ("How much defense should " + k + " possess?")
 
-console.log(d + " equipped the " + sc + " with a strength of " + scStrength + ".")
-console.log('He\'s already had a defense of ' + dDef + ".")
-console.log(k + " equipped the " + ls + " with a strength of " + lStrength + ".")
-console.log('He\'s already had a defense of ' + kDef + ".")
+var stopFight = false;
 
-for (lStrength; lStrength <= dDef; dDef - lStrength / 2) {
-	for (lStrength; lStrength >= dDef; dDef - lStrength) {
-		console.log (k + " attacks " + d + '.')
-		console.log (d + '\'s' + " defense is now at " + dDef + '.')
-	};
-};
-for (scStrength; scStrength <= kDef; kDef - scStrength / 2) {
-	for(scStrength; scStrength >= kDef; kDef - scStrength) {
-		console.log (d + ' attacks ' + k + '.')
-		console.log (k + '\'s defense is now at ' + kDef + '.')
-	};
-}; 
-// could not figure it out after this point with the little ammount of time I had personally
+function FighterClass(){
+	this.hp = 100;
+	this.attack = 20;
+	this.defense = 15;
+	this.name = "";
+	
+	this.buildOpts = function(){
+		var numOpts = 1;
+		var opts = new Array();
+		opts.push(buildOption(numOpts + ". Guard. (+8 Health, +1 Defense)\n",8,0,1,false,true,false));
+		numOpts++
+		opts.push(buildOption(numOpts + ". Attack!",0,0,0,false,true,false));
+		numOpts++
+		opts.push(buildOption(numOpts + ". RETREAT!!\n",0,0,0,true,false,false));
+		
+		return opts;	
+	}
+}
+function buildOption(msg,hp,defense,attack,quit){
+	var optObj = new Object;
+	optObj.msg = msg;
+	optObj.hp = hp;
+	optObj.defense = defense;
+	optObj.attack = attack;
+	optObj.quit = quit;
+	
+	return optObj;
+}
 
-// I think I should have wrapped it in a function just not sure how
+function newFight(){
+	
+	var fighter1 = new FighterClass();
+	fighter1.name = "Knight Gildar";
+	var fighter2 = new FighterClass();
+	fighter2.name = "Evil Dragon";
+	
+	console.log("Fight for Love Begins!");
+	
+	console.log(fighter1);
+	console.log(fighter2);
+	turn(fighter1,fighter2);
+}
+
+function turn(attacker,defender){
+	
+	
+	var opts = attacker.name + " - What would you like to do?\n=============================\n";
+	var fighterOpts = attacker.buildOpts();
+	for(var i=0; i<fighterOpts.length; i++){
+		opts += fighterOpts[i].msg;	
+	}
+	
+	var action = parseInt(prompt(opts));
+	
+	attacker.attack += fighterOpts[action-1].attack;
+	attacker.defense += fighterOpts[action-1].defense;
+	attacker.hp += fighterOpts[action-1].hp;
+	
+	console.log(fighterOpts[action-1].msg);
+	
+	if(fighterOpts[action+2]){
+		defender.defense-attacker.attack
+		}
+	
+	if(fighterOpts[action-1].quit){
+		console.log(attacker.name + " RETREATS! " + defender.name + " WINS!")
+	} else if(defender.hp <= 0){
+		console.log(attacker.name + " WINS!")	
+	} else {
+		turn(defender,attacker)
+	}
+	
+	console.log(attacker);
+	console.log(defender);
+	
+}
+
+
+
+newFight();

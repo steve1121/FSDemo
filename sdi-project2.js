@@ -6,7 +6,10 @@
 
 var p = "Princess Pop";
 
-	
+console.log("There was once a beautiful princess, her name was " + p + ".")
+console.log("Her heart belonged to the nicest dragon in the land, his name was Evil Dragon")
+console.log("The evil Knight Gildar was always trying to steal her away from him.")	
+console.log("Evil Dragon finally said enough was enough! It is time to fight!")
 
 
 var stopFight = false;
@@ -20,11 +23,12 @@ function FighterClass(){
 	this.buildOpts = function(){
 		var numOpts = 1;
 		var opts = new Array();
-		opts.push(buildOption(numOpts + ". Guard. (+8 Health, +1 Defense)\n",8,0,1,false,true,false));
+		opts.push(buildOption(numOpts + ". Guard. (+8 Health, +1 Defense)\n",8,1,0,false,true,false));
 		numOpts++
-		opts.push(buildOption(numOpts + ". Attack!",0,0,0,false,true,false));
+		opts.push(buildOption(numOpts + ". Attack!\n",0,0,0,false,true,false));
 		numOpts++
 		opts.push(buildOption(numOpts + ". RETREAT!!\n",0,0,0,true,false,false));
+		numOpts++
 		
 		return opts;	
 	}
@@ -71,9 +75,11 @@ function turn(attacker,defender){
 	
 	console.log(fighterOpts[action-1].msg);
 	
-	if(fighterOpts[action+2]){
-		defender.defense-attacker.attack
-		}
+	
+	
+	if(fighterOpts[action-1].attack){
+		defender.hp -= 1+attacker.attack-defender.defense;
+	} 
 	
 	if(fighterOpts[action-1].quit){
 		console.log(attacker.name + " RETREATS! " + defender.name + " WINS!")
